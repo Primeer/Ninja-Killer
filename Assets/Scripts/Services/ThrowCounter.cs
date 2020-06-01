@@ -11,7 +11,7 @@ public class ThrowCounter : Singleton<ThrowCounter>
 		get { return count == maxCount; }
 	}
 
-	private static int maxCount => GameManager.Instance.options.shurikenCount;
+	private static int maxCount;
 	private static int count;
 	private List<GameObject> icons = new List<GameObject>();
 	
@@ -22,11 +22,12 @@ public class ThrowCounter : Singleton<ThrowCounter>
 		RemoveIcon();
 	}
 
-	public void ResetCount()
+	public void ResetCount(int max)
 	{
 		ClearIcons();
 
 		count = 0;
+		maxCount = max;
 
 		for (int i = 0; i < maxCount; i++)
 		{

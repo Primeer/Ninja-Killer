@@ -5,6 +5,7 @@ using UnityEngine;
 public class Task
 {
 	public Obstacle obstacle;
+	public int shurikenCount;
 	public bool active;
 	public bool completed;
 
@@ -12,5 +13,6 @@ public class Task
 	{
 		obstacle = obs;
 		obstacle.task = this;
+		shurikenCount = obstacle.attemptCount;
 	}
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+	public int attemptCount;
 	private List<GameObject> victims = new List<GameObject>();
 	public Task task;
 

@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
 		InputSystem.Instance.MainButtonEnabled(true);
 		player.Stop();
 
-		ThrowCounter.Instance.ResetCount();
+		ThrowCounter.Instance.ResetCount(task.shurikenCount);
 
 		task.active = true;
 	}
