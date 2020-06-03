@@ -33,6 +33,11 @@ public class Shuriken : MonoBehaviour
 		{
 			other.transform.parent.GetComponent<Obstacle>().Delete(other.gameObject);
 		}
+
+		if(other.gameObject.tag == "Wall")
+		{
+			ShurikenSpawner.Despawn(gameObject);
+		}
 	}
 
 	private IEnumerator Movement(float angle)

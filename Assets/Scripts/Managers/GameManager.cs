@@ -93,10 +93,10 @@ public class GameManager : Singleton<GameManager>
 		task.active = false;
 		task = null;
 
+		player.Move();
+
 		if(obstacles.Count == 0)
 			NextLevel();
-
-		player.Move();
 	}
 
 	public void OnTaskFail()
@@ -112,7 +112,11 @@ public class GameManager : Singleton<GameManager>
 
 	public void NextLevel()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-		Awake();
+		if (SceneManager.GetActiveScene().buildIndex + 1 != SceneManager.sceneCountInBuildSettings)
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+			Awake();
+		} 
+		else player.Stop();
 	}
 }
