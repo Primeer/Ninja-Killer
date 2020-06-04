@@ -33,7 +33,7 @@ public class ThrowCounter : Singleton<ThrowCounter>
 		{
 			GameObject icon = Lean.Pool.LeanPool.Spawn(iconPrefab, transform);
 			Vector3 pos = Vector3.zero;
-			pos.x = 130f * i;
+			pos.x = -130f * i;
 			icon.transform.localPosition = pos;
 
 			icons.Add(icon);

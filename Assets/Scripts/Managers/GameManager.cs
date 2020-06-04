@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 		base.Awake();
 		options = Resources.Load<Options>("Options");
 		trajectory = GetComponent<Trajectory>();
-		// delay = new WaitForSeconds(options.delayAfterTask);
+		delay = new WaitForSeconds(options.delayAfterTask);
 		player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
 		obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
 	}
@@ -78,7 +78,8 @@ public class GameManager : Singleton<GameManager>
 	public void CheckTask()
 	{
 		if(task.completed)
-			OnTaskComplete();
+			// OnTaskComplete();
+			StartCoroutine(AfterTask());
 		else if(!ThrowCounter.Instance.Empty)
 			InputSystem.Instance.MainButtonEnabled(true);
 		else OnTaskFail();
@@ -118,5 +119,11 @@ public class GameManager : Singleton<GameManager>
 			Awake();
 		} 
 		else player.Stop();
+	}
+
+	private IEnumerator AfterTask()
+	{
+		yield return delay;
+		OnTaskComplete();
 	}
 }

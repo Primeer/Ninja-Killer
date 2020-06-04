@@ -7,6 +7,7 @@ public class Options : ScriptableObject
 {
 	public float trajectoryDistance;
 	public int markerCount;
+	public float delayAfterTask;
 	public GameObject shurikenPrefab;
 	public GameObject markerPrefab;
 }

@@ -9,16 +9,30 @@ public class Obstacle : MonoBehaviour
 	public Task task;
 
 	private void Start() {
-		foreach(Transform obj in transform)
+		foreach (Transform obj in transform)
 		{
-			if(obj.gameObject.tag == "Victim")
+			if (obj.gameObject.tag == "Victim")
 				victims.Add(obj.gameObject);
+		}
+		
+		foreach(GameObject enemy in victims)
+		{
+			enemy.transform.parent = null;
+			enemy.GetComponent<Enemy>().obstacle = this;
+			
 		}
 	}
 	
 	public void Delete(GameObject victim)
 	{
-		Destroy(victim);
+		// Destroy(victim);
+		
+	    // victim.GetComponent<CapsuleCollider>().enabled = false;
+	    victim.GetComponent<Animator>().enabled = false;
+		// Vector3 pos = victim.transform.position;
+		// pos.y += 2f;
+		// victim.GetComponent<Animator>().SetTrigger("death");
+
 		victims.Remove(victim);
 
 		if(victims.Count == 0)

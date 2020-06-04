@@ -10,11 +10,17 @@ public class Shuriken : MonoBehaviour
 
 	private Rigidbody rigidbody;
 
+	private Vector3 velocity;
+
 	public void Init(float angle)
 	{
-		StartCoroutine(Movement(angle));
-		// rigidbody = GetComponent<Rigidbody>();
+		
+		rigidbody = GetComponent<Rigidbody>();
+		rigidbody.velocity = Vector3.zero;
 		// rigidbody.AddForce(Converter.AngleToDirectionXZ(angle) * movementSpeed * 50, ForceMode.Acceleration);
+
+
+		StartCoroutine(Movement(angle));
 	}
 
 	void Update()
@@ -28,21 +34,20 @@ public class Shuriken : MonoBehaviour
 	// 	rigidbody.AddForce((targetPos - rigidbody.position).normalized * movementSpeed * gravitation / GameManager.Instance.options.trajectoryDistance, ForceMode.Acceleration);
 	// }
 
-	private void OnCollisionEnter(Collision other) {
-		if(other.gameObject.tag == "Victim")
+	private void OnTriggerEnter(Collider other) {
+		if (other.transform.root.gameObject.tag == "Victim")
 		{
-			other.transform.parent.GetComponent<Obstacle>().Delete(other.gameObject);
+			other.transform.root.gameObject.GetComponent<Enemy>().Death();
+			other.GetComponent<Rigidbody>().AddForceAtPosition(velocity.normalized * 1000, rigidbody.position);
 		}
 
 		if(other.gameObject.tag == "Wall")
-		{
 			ShurikenSpawner.Despawn(gameObject);
-		}
 	}
 
 	private IEnumerator Movement(float angle)
 	{
-		Vector3 velocity = Converter.AngleToDirectionXZ(angle);
+		velocity = Converter.AngleToDirectionXZ(angle);
 		Vector3 pos = GameManager.Instance.player.transform.position;
 		pos.y += 1.1f;
 
