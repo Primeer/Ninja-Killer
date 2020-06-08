@@ -117,8 +117,12 @@ public class GameManager : Singleton<GameManager>
 		{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 			Awake();
-		} 
-		else player.Stop();
+		}
+		else
+		{
+			SceneManager.LoadScene(0);
+			Awake();
+		}
 	}
 
 	private IEnumerator AfterTask()
