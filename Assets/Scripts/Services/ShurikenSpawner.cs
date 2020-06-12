@@ -8,10 +8,10 @@ public class ShurikenSpawner : MonoBehaviour
 	public delegate void Method();
 	public static event Method onShurikenDespawn;
 
-	public static void Spawn(float angle)
+	public static void Spawn()
 	{
 		GameObject shuriken = LeanPool.Spawn(GameManager.Instance.options.shurikenPrefab);
-		shuriken.GetComponent<Shuriken>().Init(angle);
+		shuriken.GetComponent<Shuriken>().Init();
 	}
 
 	public static void Despawn(GameObject shuriken)

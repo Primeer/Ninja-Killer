@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabc5ea759736dd49b3d54c7a8ea009f, type: 3}
   m_Name: Options
   m_EditorClassIdentifier: 
-  trajectoryDistance: 7
+  trajectoryDistance: 9
+  shurikenSpeed: 7.5
   markerCount: 10
   delayAfterTask: 1
   shurikenPrefab: {fileID: 8546878281673769456, guid: 61261bd3c03ff7347b4790289905d5f4,

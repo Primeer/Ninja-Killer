@@ -6,6 +6,7 @@ using UnityEngine;
 public class Options : ScriptableObject
 {
 	public float trajectoryDistance;
+	public float shurikenSpeed;
 	public int markerCount;
 	public float delayAfterTask;
 	public GameObject shurikenPrefab;

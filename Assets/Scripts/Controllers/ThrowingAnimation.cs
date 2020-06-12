@@ -83,6 +83,6 @@ public class ThrowingAnimation : MonoBehaviour
 
 	public void OnThrow()
 	{
-		ShurikenSpawner.Spawn(angle);
+		ShurikenSpawner.Spawn();
 	}
 }

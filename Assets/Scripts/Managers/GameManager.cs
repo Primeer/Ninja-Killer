@@ -10,13 +10,13 @@ public class GameManager : Singleton<GameManager>
 
 	public  Task task;
 	private List<GameObject> obstacles;
-	private Trajectory trajectory;
+	private Aim aim;
 	private WaitForSeconds delay;
 
 	public override void Awake() {
 		base.Awake();
 		options = Resources.Load<Options>("Options");
-		trajectory = GetComponent<Trajectory>();
+		aim = GetComponent<Aim>();
 		delay = new WaitForSeconds(options.delayAfterTask);
 		player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
 		obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
@@ -40,21 +40,21 @@ public class GameManager : Singleton<GameManager>
 
 	public void AimStart(float angle)
 	{
-		trajectory.Set(angle);
+		aim.SetAngle(angle);
 	}
 
 	public void Aim(float angle)
 	{
-		trajectory.Set(angle);
+		aim.SetAngle(angle);
 	}
 
 	public void AimEnd(float angle)
 	{
 		InputSystem.Instance.MainButtonEnabled(false);
 		
-		trajectory.Set(angle);
+		aim.SetAngle(angle);
 		player.Throw(angle);
-		trajectory.Hide();
+		aim.Hide();
 
 		ThrowCounter.Instance.Count();
 	}

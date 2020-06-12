@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 183934246544476371}
   - component: {fileID: 183934246544476376}
   - component: {fileID: 183934246544476377}
+  - component: {fileID: 1924630141}
+  - component: {fileID: 1924630149}
   m_Layer: 0
   m_Name: Rope
   m_TagString: Untagged
@@ -31,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183934246544476369}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.965, y: -0.791, z: -0.023}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 183934248000637630}
@@ -96,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61104f33a3f344db9b7e0d0cda41a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CollisionMaterial: {fileID: 0}
+  m_CollisionMaterial: {fileID: 11400000, guid: 56297c6e785b44eb28e469b62cedc016,
+    type: 2}
   solverIndices: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f00000070000000710000007200000073000000740000007500000076000000
-  m_SelfCollisions: 1
+  m_SelfCollisions: 0
   restLength_: 1.5859153
   elements:
   - particle1: 0
@@ -283,6 +286,33 @@ MonoBehaviour:
   - {x: 0.005769573, y: 0.5337108, z: -0.02160876}
   m_OrientationOffsets:
   - {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1924630141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183934246544476369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8285ac97113f74d449053378d0e3a56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CursorMu: 1
+  m_SourceMu: 0
+  direction: 0
+--- !u!114 &1924630149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183934246544476369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360c87f7692721f43b34978120534d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &183934247951824342
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183934247951824342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.967, y: -1.585, z: -0.015508652}
+  m_LocalPosition: {x: 0, y: -0.798, z: 0}
   m_LocalScale: {x: 0.34663, y: 0.34663, z: 0.34663}
   m_Children: []
   m_Father: {fileID: 183934248000637630}
@@ -408,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 0}
-  phase: 2
+  phase: 1
   thickness: 0
   sourceCollider: {fileID: 183934247951824336}
   accurateContacts: 0
@@ -438,6 +468,8 @@ GameObject:
   - component: {fileID: 183934248000637630}
   - component: {fileID: 183934248000637629}
   - component: {fileID: 183934248000637628}
+  - component: {fileID: 1223775928}
+  - component: {fileID: 1223775929}
   m_Layer: 0
   m_Name: RopePuzzle
   m_TagString: Untagged
@@ -474,12 +506,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d174fab52f0c4b8399f25d5c3ea524c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulateWhenInvisible: 1
+  simulateWhenInvisible: 0
   parameters:
     mode: 0
     interpolation: 0
     gravity: {x: 0, y: -9.81, z: 0}
-    damping: 0
+    damping: 0.9
     shockPropagation: 0
     maxAnisotropy: 3
     maxDepenetration: 5
@@ -839,6 +871,32 @@ MonoBehaviour:
   - {fileID: 183934248000637629}
   substepUnityPhysics: 0
   substeps: 1
+--- !u!136 &1223775928
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183934248000637619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.04
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.18, z: 0}
+--- !u!114 &1223775929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183934248000637619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fd450256c198e41919c43e50f7317d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &183934248083263338
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183934248083263338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.95791, y: 0.349, z: -0.015508652}
+  m_LocalPosition: {x: 0, y: 1.148, z: 0}
   m_LocalScale: {x: 0.34663, y: 0.34663, z: 0.34663}
   m_Children: []
   m_Father: {fileID: 183934248000637630}
