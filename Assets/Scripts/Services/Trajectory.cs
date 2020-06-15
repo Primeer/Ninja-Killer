@@ -54,7 +54,19 @@ public class Trajectory
 		return point;
 	}
 
-	
+	public Vector3 GetVelocityByTime(float t)
+	{
+		Vector3 velocity = startVelocity + acceleration * t;
+		if(t > movementTime) return GetReverseVelocity(t);
+		return velocity;
+	}
+
+	private Vector3 GetReverseVelocity(float t)
+	{
+		t -= movementTime;
+		Vector3 velocity = -startVelocity - acceleration * t;
+		return velocity;
+	}
 
 	public void ResetTime() => timeCounter = 0f;
 }

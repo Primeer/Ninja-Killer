@@ -14,6 +14,14 @@ public class ThrowCounter : Singleton<ThrowCounter>
 	private static int maxCount;
 	private static int count;
 	private List<GameObject> icons = new List<GameObject>();
+
+	private void OnEnable() {
+		ShurikenSpawner.onShurikenDespawn += CheckEmpty;
+	}
+
+	private void OnDisable() {
+		ShurikenSpawner.onShurikenDespawn -= CheckEmpty;
+	}
 	
 	public void Count()
 	{
@@ -55,5 +63,11 @@ public class ThrowCounter : Singleton<ThrowCounter>
 			Lean.Pool.LeanPool.Despawn(icon);
 		}
 		icons.Clear();
+	}
+
+	private void CheckEmpty()
+	{
+		if(Empty)
+			GameManager.Instance.OnShurikenEmpty();
 	}
 }

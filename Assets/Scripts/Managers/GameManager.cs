@@ -11,13 +11,14 @@ public class GameManager : Singleton<GameManager>
 	public  Task task;
 	private List<GameObject> obstacles;
 	private Aim aim;
-	private WaitForSeconds delay;
+	private WaitForSeconds delayAfterTask;
+	private Coroutine afterEmpty;
 
 	public override void Awake() {
 		base.Awake();
 		options = Resources.Load<Options>("Options");
 		aim = GetComponent<Aim>();
-		delay = new WaitForSeconds(options.delayAfterTask);
+		delayAfterTask = new WaitForSeconds(options.delayAfterTask);
 		player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
 		obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
 	}
@@ -27,7 +28,8 @@ public class GameManager : Singleton<GameManager>
 		InputSystem.onMainButtonDrag += Aim;
 		InputSystem.onMainButtonRelease += AimEnd;
 
-		ShurikenSpawner.onShurikenDespawn += CheckTask;
+		// ShurikenSpawner.onShurikenDespawn += CheckTask;
+		ShurikenSpawner.onShurikenDespawn += () => InputSystem.Instance.MainButtonEnabled(true);
 	}
 
 	private void OnDisable() {
@@ -35,7 +37,8 @@ public class GameManager : Singleton<GameManager>
 		InputSystem.onMainButtonDrag -= Aim;
 		InputSystem.onMainButtonRelease -= AimEnd;
 
-		ShurikenSpawner.onShurikenDespawn -= CheckTask;
+		// ShurikenSpawner.onShurikenDespawn -= CheckTask;
+		ShurikenSpawner.onShurikenDespawn -= () => InputSystem.Instance.MainButtonEnabled(true);
 	}
 
 	public void AimStart(float angle)
@@ -61,7 +64,16 @@ public class GameManager : Singleton<GameManager>
 
 	public void SetTask(Obstacle obs)
 	{
+		if (task != null)
+		{
+			task.onComplete -= OnTaskComplete;
+			task.onFail -= OnTaskFail;
+		}
+
 		task = new Task(obs);
+		task.onComplete += OnTaskComplete;
+		task.onFail += OnTaskFail;
+
 		OnTaskBegin();
 	}
 
@@ -71,63 +83,70 @@ public class GameManager : Singleton<GameManager>
 		player.Stop();
 
 		ThrowCounter.Instance.ResetCount(task.shurikenCount);
-
-		task.active = true;
 	}
 
-	public void CheckTask()
+	public void OnShurikenEmpty()
 	{
-		if(task.completed)
-			// OnTaskComplete();
-			StartCoroutine(AfterTask());
-		else if(!ThrowCounter.Instance.Empty)
-			InputSystem.Instance.MainButtonEnabled(true);
-		else OnTaskFail();
+		if(task == null) return;
+
+		afterEmpty = StartCoroutine(AfterEmpty());
 	}
 
 	public void OnTaskComplete()
 	{
+		if(afterEmpty != null)
+			StopCoroutine(afterEmpty);
+		
 		InputSystem.Instance.MainButtonEnabled(false);
 		ThrowCounter.Instance.ClearIcons();
 
-		obstacles.Remove(task.obstacle.gameObject);
-		task.active = false;
+		obstacles.Remove(task.obstacle.gameObject);	
 		task = null;
 
-		player.Move();
-
-		if(obstacles.Count == 0)
-			NextLevel();
+		StartCoroutine(AfterTaskComplete());
 	}
 
 	public void OnTaskFail()
 	{
-		RestartLevel();
+		StartCoroutine(AfterTaskFail());
 	}
 
 	public void RestartLevel()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		Awake();
 	}
 
-	public void NextLevel()
+	public void LoadNextLevel()
 	{
-		if (SceneManager.GetActiveScene().buildIndex + 1 != SceneManager.sceneCountInBuildSettings)
-		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-			Awake();
-		}
-		else
-		{
-			SceneManager.LoadScene(0);
-			Awake();
-		}
+		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+		
+		if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+			nextSceneIndex = 0;
+		
+		SceneManager.LoadScene(nextSceneIndex);
+		Awake();
 	}
 
-	private IEnumerator AfterTask()
+	private IEnumerator AfterTaskComplete()
 	{
-		yield return delay;
-		OnTaskComplete();
+		yield return delayAfterTask;
+		
+		player.Move();
+
+		if(obstacles.Count == 0)
+			LoadNextLevel();
+	}
+
+	private IEnumerator AfterTaskFail()
+	{
+		yield return delayAfterTask;
+		RestartLevel();
+	}
+
+	private IEnumerator AfterEmpty()
+	{
+		yield return new WaitForSeconds(task.delayAfterTask);
+		RestartLevel();
 	}
 }

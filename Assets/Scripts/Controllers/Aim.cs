@@ -30,7 +30,7 @@ public class Aim : MonoBehaviour
 
 		Trajectory.main = new Trajectory(startPos, startDirection, GameManager.Instance.options.trajectoryDistance, GameManager.Instance.options.shurikenSpeed);
 
-		for (int i = 1; i <= markerCount + 2; i++)
+		for (int i = 1; i <= markerCount * 2 - 3; i++)
 		{
 			GameObject marker = Lean.Pool.LeanPool.Spawn(markerPrefab, markersContainer.transform);
 			marker.transform.position = Trajectory.main.GetPointByPercent((float)i / (float)markerCount);

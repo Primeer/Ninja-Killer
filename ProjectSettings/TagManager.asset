@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Victim
   - Obstacle
-  - Wall
   - Shell
+  - Enemy
   layers:
   - Default
   - TransparentFX

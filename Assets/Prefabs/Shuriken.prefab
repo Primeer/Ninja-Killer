@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 8560016584478258958}
   - component: {fileID: 2281465915758820672}
   - component: {fileID: 2564503434795874494}
-  - component: {fileID: 5078138270099866326}
   - component: {fileID: 3058747607926906035}
+  - component: {fileID: 5212264301106387376}
+  - component: {fileID: 5078138270099866326}
+  - component: {fileID: -2820559273665507679}
   m_Layer: 0
   m_Name: Shuriken
   m_TagString: Shell
@@ -113,6 +115,38 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.04
   m_Center: {x: -0.0000000037252903, y: 0, z: 0.000000007450581}
+--- !u!114 &3058747607926906035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546878281673769456}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  phase: 0
+  thickness: 0
+  sourceCollider: {fileID: 2564503434795874494}
+  accurateContacts: 0
+  useDistanceFields: 0
+  distanceField: {fileID: 0}
+--- !u!114 &5212264301106387376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546878281673769456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62359d80fdc0e4315ab6331b78ec5b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kinematicForParticles: 0
 --- !u!114 &5078138270099866326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,10 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6d537f498a7b940a52855f9301be21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 1.7
+  lifeTime: 1.8
   rotationSpeed: 1000
-  gravitation: 7
---- !u!114 &3058747607926906035
+  startPositionAtTrajectory: 0.2
+  force: 400
+--- !u!114 &-2820559273665507679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,13 +172,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8546878281673769456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 05b2b4d3faf71d447b8f32c3686e737b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  phase: 0
-  thickness: 0
-  sourceCollider: {fileID: 0}
-  accurateContacts: 0
-  useDistanceFields: 0
-  distanceField: {fileID: 0}
+  type: 0
+  solid: 0

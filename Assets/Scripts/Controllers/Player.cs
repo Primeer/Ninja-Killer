@@ -17,8 +17,11 @@ public class Player : MonoBehaviour
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if(GameManager.Instance.task == null)
-			GameManager.Instance.SetTask(other.gameObject.GetComponent<Obstacle>());
+		TaskTrigger trigger = other.GetComponent<TaskTrigger>();
+
+		if(trigger)
+			if(GameManager.Instance.task == null)
+				GameManager.Instance.SetTask(trigger.Obstacle);
 	}
 
 	public void Throw(float angle)

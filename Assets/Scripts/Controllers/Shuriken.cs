@@ -1,47 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Obi;
 
 public class Shuriken : MonoBehaviour
 {
 	[SerializeField] private float lifeTime;
 	[SerializeField] private float rotationSpeed;
-	[SerializeField] private float gravitation;
+	[SerializeField] private float startPositionAtTrajectory;
+	[SerializeField] private float force;
+
+	private Coroutine movement;
+	private Coroutine rotation;
 
 	private float life;
 
 	public void Init()
 	{
 		life = 0f;
-		StartCoroutine(Movement());
-	}
-
-	void Update()
-    {
-		transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+		movement = StartCoroutine(Movement());
+		rotation = StartCoroutine(Rotation());
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		ITouchable touchebleObj = other.transform.root.GetComponent<ITouchable>();
-		
-		if(touchebleObj != null)
-			touchebleObj.Touch();
+		TouchableObject touchebleObj = other.GetComponentInParent<TouchableObject>();
+
+		if (touchebleObj != null)
+		{
+			touchebleObj.Touch(Trajectory.main.GetVelocityByTime(life + startPositionAtTrajectory).normalized * force);
+			if(touchebleObj.Solid) 
+				Attach(other.transform);
+		}
 		else
-			ShurikenSpawner.Despawn(gameObject);
+			Attach(other.transform);
 	}
 
 	private IEnumerator Movement()
 	{
-		transform.position = Trajectory.main.GetPointByPercent(0.22f);
+		transform.position = Trajectory.main.GetPointByTime(startPositionAtTrajectory);
 		
 		while(life < lifeTime)
 		{
 			yield return null;
-			transform.position = Trajectory.main.GetPointByDeltaTime(Time.deltaTime);
+			transform.position = Trajectory.main.GetPointByTime(life + startPositionAtTrajectory);
 			life += Time.deltaTime;
 		}
 
 		ShurikenSpawner.Despawn(gameObject);
+	}
+
+	private IEnumerator Rotation()
+	{
+		while(true)
+		{
+			transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+			yield return null;
+		}
+	}
+
+	private void Attach(Transform parent)
+	{
+		StopCoroutine(movement);
+		StopCoroutine(rotation);
+		Destroy(GetComponent<ObiRigidbody>());
+		Destroy(GetComponent<Rigidbody>());
+		transform.parent = parent;
+
+		ShurikenSpawner.Disable(gameObject);
+		Destroy(this);
 	}
 
 	void OnDrawGizmosSelected()

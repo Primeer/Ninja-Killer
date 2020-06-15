@@ -21,4 +21,10 @@ public class ShurikenSpawner : MonoBehaviour
 		if(onShurikenDespawn != null)
 			onShurikenDespawn();
 	}
+
+	public static void Disable(GameObject shuriken)
+	{
+		if(onShurikenDespawn != null)
+			onShurikenDespawn();
+	}
 }
