@@ -19,4 +19,9 @@ public class TaskTrigger : MonoBehaviour
 		pos.x = 0f;
 		transform.position = pos;
 	}
+
+	private void OnDrawGizmos() {
+		Gizmos.color = Color.green;
+		Gizmos.DrawSphere(transform.position, 0.2f);
+	}
 }
