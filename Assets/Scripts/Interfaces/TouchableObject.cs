@@ -24,6 +24,9 @@ public class TouchableObject : MonoBehaviour
 		if(type != Type.Dynamic) return;
 		
 		Rigidbody rig = GetComponentInChildren<Rigidbody>();
+		if(rig == null)
+			rig = gameObject.AddComponent<Rigidbody>();
+
 		rig.isKinematic = false;
 		rig.AddForce(force);
 	}

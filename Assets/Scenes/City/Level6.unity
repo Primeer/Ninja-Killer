@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cityLength: 80
-  roofWidth: 5
+  platformWidth: 5
   buildings:
   - {fileID: 1094070076725002, guid: 7add3e7297b35e641a999bd04f864556, type: 3}
   - {fileID: 1008910926177166, guid: 4679c254a6695e9418e7cfbc183a338e, type: 3}

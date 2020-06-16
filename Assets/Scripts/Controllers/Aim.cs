@@ -25,7 +25,7 @@ public class Aim : MonoBehaviour
 		Vector3 startDirection = Converter.AngleToDirectionXZ(angle);
 		
 		Vector3 startPos = Vector3.zero;
-		startPos.y = player.position.y + 1.1f;
+		startPos.y = player.position.y + 1f;
 		startPos.z = player.position.z;
 
 		Trajectory.main = new Trajectory(startPos, startDirection, GameManager.Instance.options.trajectoryDistance, GameManager.Instance.options.shurikenSpeed);

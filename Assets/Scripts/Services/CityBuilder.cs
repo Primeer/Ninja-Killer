@@ -5,7 +5,7 @@ using UnityEngine;
 public class CityBuilder : MonoBehaviour
 {
 	[SerializeField] private float cityLength;
-	[SerializeField] private float roofWidth;
+	[SerializeField] private float platformWidth;
 	[SerializeField] private List<GameObject> buildings;
 
 	private enum Alignment
@@ -24,8 +24,8 @@ public class CityBuilder : MonoBehaviour
 
 		city = new GameObject("City");
 
-		CreateSide(Alignment.Right, -roofWidth / 2f, cityLength, city.transform);
-		CreateSide(Alignment.Left, roofWidth / 2f, cityLength, city.transform);
+		CreateSide(Alignment.Right, -platformWidth / 2f, cityLength, city.transform);
+		CreateSide(Alignment.Left, platformWidth / 2f, cityLength, city.transform);
 	}
 
 	private void CreateSide(Alignment alignment, float removal, float length, Transform parent)
@@ -50,7 +50,6 @@ public class CityBuilder : MonoBehaviour
 
 		if(building.transform.localRotation.eulerAngles.y != 0f)
 			size = SwapSize(size);
-		// Vector3 offset = building.GetComponent<BoxCollider>().center;
 
 		Vector3 pos = Vector3.zero;
 		
