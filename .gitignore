@@ -74,3 +74,6 @@ crashlytics-build.properties
 # Bugs file
 Bugs.txt
 ProfilerData/*
+
+# Xcode folder
+Xcode/*

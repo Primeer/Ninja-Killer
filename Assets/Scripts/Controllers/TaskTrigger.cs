@@ -6,7 +6,11 @@ public class TaskTrigger : MonoBehaviour
 {
 	public Obstacle Obstacle
 	{
-		get { return transform.parent.GetComponent<Obstacle>(); }
+		get 
+		{
+			gameObject.SetActive(false);
+			return transform.parent.GetComponent<Obstacle>(); 
+		}
 	}
 
 	private void Start() {

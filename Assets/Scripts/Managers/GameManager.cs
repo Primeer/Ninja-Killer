@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using GameAnalyticsSDK;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -21,6 +22,8 @@ public class GameManager : Singleton<GameManager>
 		delayAfterTask = new WaitForSeconds(options.delayAfterTask);
 		player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
 		obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
+
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, $"Level {SceneManager.GetActiveScene().buildIndex + 1}");
 	}
 
 	private void OnEnable() {
@@ -113,6 +116,8 @@ public class GameManager : Singleton<GameManager>
 
 	public void RestartLevel()
 	{
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, $"Level {SceneManager.GetActiveScene().buildIndex + 1}");
+
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		Awake();
 	}
@@ -120,6 +125,8 @@ public class GameManager : Singleton<GameManager>
 	public void LoadNextLevel()
 	{
 		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Level {nextSceneIndex}");
 		
 		if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
 			nextSceneIndex = 0;

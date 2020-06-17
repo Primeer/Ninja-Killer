@@ -278,6 +278,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3738660070719077718, guid: 9d108eee5bf7833438b59bceaf404ead,
+        type: 3}
+      propertyPath: angle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 258235352053962271, guid: 9d108eee5bf7833438b59bceaf404ead,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2250,6 +2255,7 @@ GameObject:
   - component: {fileID: 1527604659}
   - component: {fileID: 1527604657}
   - component: {fileID: 1527604658}
+  - component: {fileID: 1527604661}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2311,6 +2317,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527604661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527604656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96788ec0ee88de4392dac43c3afe735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1563222368
 PrefabInstance:
   m_ObjectHideFlags: 0
