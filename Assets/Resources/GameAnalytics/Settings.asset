@@ -25,28 +25,16 @@ MonoBehaviour:
   UserMessagesSubmitted: 0
   UserMessagesFailed: 0
   CustomArea: 
-  gameKey:
-  - 6b2b6fc90044ef364f012120bdec3543
-  - 9d47a63c9a7b37e387e3fb3dcbd0e94f
-  secretKey:
-  - 34bbad5a04e019d8b759240eb013f836929bc30b
-  - 3681ad1cbbc08c8e821de60ff0675ad2a5e377d2
-  Build:
-  - 0.1
-  - 0.1
-  SelectedPlatformOrganization:
-  - NoPayStudio
-  - NoPayStudio
-  SelectedPlatformStudio:
-  - NoPayStudio
-  - NoPayStudio
-  SelectedPlatformGame:
-  - Ninja Tale - Android
-  - Ninja Tale - iOS
-  SelectedPlatformGameID: 999a01009a9a0100
-  SelectedOrganization: 0100000001000000
-  SelectedStudio: 0100000001000000
-  SelectedGame: 1300000012000000
+  gameKey: []
+  secretKey: []
+  Build: []
+  SelectedPlatformOrganization: []
+  SelectedPlatformStudio: []
+  SelectedPlatformGame: []
+  SelectedPlatformGameID: 
+  SelectedOrganization: 
+  SelectedStudio: 
+  SelectedGame: 
   NewVersion: 
   Changes: 
   SignUpOpen: 0
@@ -54,7 +42,7 @@ MonoBehaviour:
   GameName: Ninja Killer
   OrganizationName: 
   OrganizationIdentifier: 
-  EmailGA: tanysa97@mail.ru
+  EmailGA: 
   IntroScreen: 0
   InfoLogEditor: 1
   InfoLogBuild: 1
@@ -69,7 +57,7 @@ MonoBehaviour:
   ResourceItemTypes: []
   ResourceCurrencies: []
   LastCreatedGamePlatform: -1
-  Platforms: 0b00000008000000
+  Platforms: 
   CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
@@ -96,7 +84,7 @@ MonoBehaviour:
   IncludeGooglePlay: 1
   FpsCriticalThreshold: 20
   FpsCirticalSubmitInterval: 1
-  PlatformFoldOut: 0101
+  PlatformFoldOut: 
   CustomDimensions01FoldOut: 0
   CustomDimensions02FoldOut: 0
   CustomDimensions03FoldOut: 0
