@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Obi;
 
 public class Shuriken : MonoBehaviour
 {
@@ -62,7 +61,7 @@ public class Shuriken : MonoBehaviour
 	{
 		StopCoroutine(movement);
 		StopCoroutine(rotation);
-		Destroy(GetComponent<ObiRigidbody>());
+		// Destroy(GetComponent<ObiRigidbody>());
 		Destroy(GetComponent<Rigidbody>());
 		transform.parent = parent;
 

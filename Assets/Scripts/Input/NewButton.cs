@@ -43,4 +43,15 @@ public class NewButton : MonoBehaviour
 	private void OnMouseUp(){
 		onRelease?.Invoke(Input.mousePosition);
 	}
+
+	[ContextMenu("Set Managers")]
+	public void SetManagers()
+	{
+		// InputSystem input = InputSystem.Instance;
+		InputSystem input = FindObjectOfType<InputSystem>();
+
+		onTap.AddListener(input.MainButtonTap);
+		onDrag.AddListener(input.MainButtonDrag);
+		onRelease.AddListener(input.MainButtonRelease);
+	}
 }

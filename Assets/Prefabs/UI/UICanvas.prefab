@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 2587761743494817529}
   - component: {fileID: 2587761743494817528}
   - component: {fileID: 2587761743494817531}
+  - component: {fileID: 4013030871141701860}
   m_Layer: 5
   m_Name: UICanvas
   m_TagString: Untagged
@@ -308,6 +309,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4013030871141701860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2587761743494817530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265d8677e9bba6945b1e0539974d2594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconPrefab: {fileID: 8143145940902658559, guid: 0013c5f6295e468429c97f22eed087ab,
+    type: 3}
+  panel: {fileID: 2587761743715877463}
 --- !u!1 &2587761743715877462
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +333,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2587761743715877463}
-  - component: {fileID: 2587761743715877460}
   m_Layer: 5
   m_Name: ShurikenPanel
   m_TagString: Untagged
@@ -344,20 +359,6 @@ RectTransform:
   m_AnchoredPosition: {x: -160, y: -179}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2587761743715877460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2587761743715877462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 265d8677e9bba6945b1e0539974d2594, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iconPrefab: {fileID: 8143145940902658559, guid: 0013c5f6295e468429c97f22eed087ab,
-    type: 3}
 --- !u!1 &2587761744082646690
 GameObject:
   m_ObjectHideFlags: 0

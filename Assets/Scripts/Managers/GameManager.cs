@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using GameAnalyticsSDK;
 
 public class GameManager : Singleton<GameManager>
 {
 	public Player player;
+	public ThrowCounter throwCounter;
 	[HideInInspector]public Options options;
 
 	public  Task task;
@@ -19,9 +21,11 @@ public class GameManager : Singleton<GameManager>
 		options = Resources.Load<Options>("Options");
 		aim = GetComponent<Aim>();
 		delayAfterTask = new WaitForSeconds(options.delayAfterTask);
-		player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
+		player = FindObjectOfType<Player>();
+		throwCounter = FindObjectOfType<ThrowCounter>();
 		obstacles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Obstacle"));
 
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, $"Level {SceneManager.GetActiveScene().buildIndex + 1}");
 	}
 
 	private void OnEnable() {
@@ -60,7 +64,7 @@ public class GameManager : Singleton<GameManager>
 		player.Throw(angle);
 		aim.Hide();
 
-		ThrowCounter.Instance.Count();
+		throwCounter.Count();
 	}
 
 	public void SetTask(Obstacle obs)
@@ -83,7 +87,7 @@ public class GameManager : Singleton<GameManager>
 		InputSystem.Instance.MainButtonEnabled(true);
 		player.Stop();
 
-		ThrowCounter.Instance.ResetCount(task.shurikenCount);
+		throwCounter.ResetCount(task.shurikenCount);
 	}
 
 	public void OnShurikenEmpty()
@@ -99,7 +103,7 @@ public class GameManager : Singleton<GameManager>
 			StopCoroutine(afterEmpty);
 		
 		InputSystem.Instance.MainButtonEnabled(false);
-		ThrowCounter.Instance.ClearIcons();
+		throwCounter.ClearIcons();
 
 		obstacles.Remove(task.obstacle.gameObject);	
 		task = null;
@@ -114,6 +118,7 @@ public class GameManager : Singleton<GameManager>
 
 	public void RestartLevel()
 	{
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, $"Level {SceneManager.GetActiveScene().buildIndex + 1}");
 
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		Awake();
@@ -123,6 +128,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
+		GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, $"Level {SceneManager.GetActiveScene().buildIndex + 1}");
 		
 		if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
 			nextSceneIndex = 0;

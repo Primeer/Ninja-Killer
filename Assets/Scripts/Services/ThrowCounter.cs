@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowCounter : Singleton<ThrowCounter>
+public class ThrowCounter : MonoBehaviour
 {
 	[SerializeField] private GameObject iconPrefab;
+	[SerializeField] private Transform panel;
 
 	public bool Empty
 	{
@@ -39,7 +40,7 @@ public class ThrowCounter : Singleton<ThrowCounter>
 
 		for (int i = 0; i < maxCount; i++)
 		{
-			GameObject icon = Lean.Pool.LeanPool.Spawn(iconPrefab, transform);
+			GameObject icon = Lean.Pool.LeanPool.Spawn(iconPrefab, panel);
 			Vector3 pos = Vector3.zero;
 			pos.x = -130f * i;
 			icon.transform.localPosition = pos;
