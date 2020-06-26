@@ -1,4 +1,4 @@
-# Ninja-Tale
+# Ninja-Killer
 ## Description
 Feel like a real ninja! Kill enemies, solve puzzles and you can become the best ninja ever!
 
