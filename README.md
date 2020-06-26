@@ -9,7 +9,7 @@ Feel like a real ninja! Kill enemies, solve puzzles and you can become the best 
 * How to extend Unity Editor and make custom Unity tools
 
 ## How to build this project 
-* Download or clone (git clone https://github.com/Primeer/Ninja-Tale.git) repository
+* Download or clone (git clone https://github.com/Primeer/Ninja-Killer.git) repository
 * Add repository folder in Unity Hub as a project
 * Run this project in Unity Editor
 * Go to File/Build Settings... and press the button "Build"
